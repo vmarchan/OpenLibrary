@@ -17,17 +17,9 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         
         self.searchResponse.delegate = self
         self.isbnCode.delegate = self
-        
-//        self.searchResponse.layer.borderWidth = 1.0
-//        self.searchResponse.layer.cornerRadius = 5.0
-//        self.searchResponse.layer.shadowColor = UIColor.grayColor().CGColor
-//        self.searchResponse.layer.shadowRadius = 1.0
-//        self.searchResponse.layer.shadowOffset = CGSizeMake(1.0, 1.0)
-//        self.searchResponse.layer.shadowOpacity = 0.5
 
         //Keyboard
         let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(ViewController.dismissKeyboard))
@@ -35,12 +27,16 @@ class ViewController: UIViewController, UITextViewDelegate, UITextFieldDelegate 
     }
 
     @IBAction func cancelAction(sender: AnyObject) {
+        self.view.endEditing(true)
+        
         self.searchResponse.text = ""
         self.isbnCode.text = ""
     }
     
     @IBAction func searchAction(sender: AnyObject) {
 
+        self.view.endEditing(true)
+        
         if (self.isbnCode.text?.characters.count == 0) {
             let alert = UIAlertController(title: "¡Atención!", message: "Para realizar la búsqueda correctamente debe introducir el código ISBN", preferredStyle: UIAlertControllerStyle.Alert)
             
